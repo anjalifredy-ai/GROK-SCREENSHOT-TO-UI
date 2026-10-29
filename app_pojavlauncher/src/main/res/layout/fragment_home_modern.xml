@@ -9,59 +9,59 @@
     <!-- LEFT SIDEBAR -->
     <LinearLayout
         android:id="@+id/sidebar"
-        android:layout_width="64dp"
+        android:layout_width="56dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="#120F1A"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
         android:gravity="center_horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageView
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:src="@mipmap/ic_launcher_round"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="20dp"
             android:contentDescription="@null"/>
 
         <ImageView
             android:id="@+id/nav_home"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:src="@android:drawable/ic_menu_compass"
             android:background="@drawable/bg_nav_active"
-            android:padding="8dp"
-            android:layout_marginBottom="12dp"
+            android:padding="7dp"
+            android:layout_marginBottom="10dp"
             android:contentDescription="Home"/>
 
         <ImageView
             android:id="@+id/nav_profile"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:src="@android:drawable/ic_menu_myplaces"
-            android:padding="8dp"
-            android:layout_marginBottom="12dp"
+            android:padding="7dp"
+            android:layout_marginBottom="10dp"
             android:contentDescription="Profile"/>
 
         <ImageView
             android:id="@+id/nav_mods"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:src="@android:drawable/ic_menu_manage"
-            android:padding="8dp"
-            android:layout_marginBottom="12dp"
+            android:padding="7dp"
+            android:layout_marginBottom="10dp"
             android:contentDescription="Mods"/>
 
         <ImageView
             android:id="@+id/nav_settings"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:src="@android:drawable/ic_menu_preferences"
-            android:padding="8dp"
-            android:layout_marginBottom="12dp"
+            android:padding="7dp"
+            android:layout_marginBottom="10dp"
             android:contentDescription="Settings"/>
 
         <View
@@ -71,10 +71,10 @@
 
         <ImageView
             android:id="@+id/nav_more"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:src="@android:drawable/ic_menu_more"
-            android:padding="8dp"
+            android:padding="7dp"
             android:contentDescription="More"/>
     </LinearLayout>
 
@@ -83,6 +83,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:fillViewport="true"
+        android:clipToPadding="false"
         app:layout_constraintStart_toEndOf="@id/sidebar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -92,7 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="12dp">
 
             <!-- TOP BAR -->
             <LinearLayout
@@ -100,23 +101,25 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="12dp">
 
                 <TextView
+                    android:id="@+id/tv_app_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="RemomLauncher"
                     android:textColor="#F8F8FC"
-                    android:textSize="18sp"
+                    android:textSize="17sp"
                     android:textStyle="bold"/>
 
                 <TextView
+                    android:id="@+id/tv_premium_badge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Premium Profile"
                     android:textColor="#A1A1AA"
-                    android:textSize="12sp"
+                    android:textSize="11sp"
                     android:background="@drawable/bg_chip"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="4dp"/>
@@ -125,11 +128,11 @@
             <!-- HERO CARD -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
-                app:cardCornerRadius="20dp"
+                android:layout_height="200dp"
+                app:cardCornerRadius="18dp"
                 app:cardBackgroundColor="#1A1724"
-                app:cardElevation="8dp"
-                android:layout_marginBottom="16dp">
+                app:cardElevation="6dp"
+                android:layout_marginBottom="14dp">
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -144,36 +147,38 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:padding="20dp"
+                        android:padding="16dp"
                         android:gravity="bottom">
 
                         <TextView
+                            android:id="@+id/tv_version_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Minecraft 1.20.1"
                             android:textColor="#FFFFFF"
-                            android:textSize="26sp"
+                            android:textSize="24sp"
                             android:textStyle="bold"/>
 
                         <TextView
+                            android:id="@+id/tv_version_sub"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Latest Release • Ready to launch"
                             android:textColor="#C4C4CC"
-                            android:textSize="13sp"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginBottom="16dp"/>
+                            android:textSize="12sp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="14dp"/>
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_launch"
                             android:layout_width="wrap_content"
-                            android:layout_height="48dp"
-                            android:text="LAUNCH 1.20.1"
+                            android:layout_height="46dp"
+                            android:text="LAUNCH"
                             android:textColor="#FFFFFF"
                             android:textStyle="bold"
                             android:backgroundTint="#22C55E"
                             app:cornerRadius="12dp"
-                            android:paddingHorizontal="28dp"/>
+                            android:paddingHorizontal="26dp"/>
                     </LinearLayout>
                 </FrameLayout>
             </androidx.cardview.widget.CardView>
@@ -183,46 +188,51 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="12dp">
 
                 <!-- PROFILE CARD -->
                 <androidx.cardview.widget.CardView
-                    android:layout_width="140dp"
-                    android:layout_height="160dp"
-                    app:cardCornerRadius="16dp"
+                    android:layout_width="120dp"
+                    android:layout_height="150dp"
+                    app:cardCornerRadius="14dp"
                     app:cardBackgroundColor="#1A1724"
                     app:cardElevation="4dp"
-                    android:layout_marginEnd="12dp">
+                    android:layout_marginEnd="10dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:padding="12dp">
+                        android:padding="10dp">
 
                         <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
+                            android:id="@+id/iv_profile_skin"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
                             android:src="@mipmap/ic_launcher_round"
                             android:background="@drawable/bg_skin_circle"
                             android:contentDescription="@null"/>
 
                         <TextView
+                            android:id="@+id/tv_profile_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="docy"
+                            android:text="Player"
                             android:textColor="#FFFFFF"
-                            android:textSize="15sp"
+                            android:textSize="14sp"
                             android:textStyle="bold"
-                            android:layout_marginTop="8dp"/>
+                            android:layout_marginTop="6dp"
+                            android:maxLines="1"
+                            android:ellipsize="end"/>
 
                         <TextView
+                            android:id="@+id/tv_profile_sub"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Your Friends"
+                            android:text="Your Profile"
                             android:textColor="#A1A1AA"
-                            android:textSize="11sp"
+                            android:textSize="10sp"
                             android:layout_marginTop="2dp"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -230,33 +240,34 @@
                 <!-- NEWS CARDS HORIZONTAL -->
                 <HorizontalScrollView
                     android:layout_width="0dp"
-                    android:layout_height="160dp"
+                    android:layout_height="150dp"
                     android:layout_weight="1"
-                    android:scrollbars="none">
+                    android:scrollbars="none"
+                    android:clipToPadding="false">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
 
-                        <!-- Card 1 Premium -->
                         <androidx.cardview.widget.CardView
-                            android:layout_width="140dp"
+                            android:id="@+id/card_premium"
+                            android:layout_width="130dp"
                             android:layout_height="match_parent"
-                            app:cardCornerRadius="14dp"
+                            app:cardCornerRadius="12dp"
                             app:cardBackgroundColor="#221F2E"
-                            android:layout_marginEnd="10dp">
+                            android:layout_marginEnd="8dp">
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
-                                android:padding="12dp">
+                                android:padding="10dp">
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="PREMIUM"
                                     android:textColor="#8B5CF6"
-                                    android:textSize="11sp"
+                                    android:textSize="10sp"
                                     android:textStyle="bold"/>
                                 <TextView
                                     android:layout_width="match_parent"
@@ -264,29 +275,29 @@
                                     android:layout_weight="1"
                                     android:text="Get Premium Access"
                                     android:textColor="#FFFFFF"
-                                    android:textSize="13sp"
+                                    android:textSize="12sp"
                                     android:gravity="center_vertical"/>
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
 
-                        <!-- Card 2 Launcher -->
                         <androidx.cardview.widget.CardView
-                            android:layout_width="140dp"
+                            android:id="@+id/card_launcher"
+                            android:layout_width="130dp"
                             android:layout_height="match_parent"
-                            app:cardCornerRadius="14dp"
+                            app:cardCornerRadius="12dp"
                             app:cardBackgroundColor="#221F2E"
-                            android:layout_marginEnd="10dp">
+                            android:layout_marginEnd="8dp">
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
-                                android:padding="12dp">
+                                android:padding="10dp">
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="LAUNCHER"
                                     android:textColor="#22C55E"
-                                    android:textSize="11sp"
+                                    android:textSize="10sp"
                                     android:textStyle="bold"/>
                                 <TextView
                                     android:layout_width="match_parent"
@@ -294,29 +305,29 @@
                                     android:layout_weight="1"
                                     android:text="Launcher Release Announcement"
                                     android:textColor="#FFFFFF"
-                                    android:textSize="13sp"
+                                    android:textSize="12sp"
                                     android:gravity="center_vertical"/>
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
 
-                        <!-- Card 3 New Update -->
                         <androidx.cardview.widget.CardView
-                            android:layout_width="140dp"
+                            android:id="@+id/card_update"
+                            android:layout_width="130dp"
                             android:layout_height="match_parent"
-                            app:cardCornerRadius="14dp"
+                            app:cardCornerRadius="12dp"
                             app:cardBackgroundColor="#221F2E"
-                            android:layout_marginEnd="10dp">
+                            android:layout_marginEnd="8dp">
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
-                                android:padding="12dp">
+                                android:padding="10dp">
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="NEW UPDATE"
                                     android:textColor="#F97316"
-                                    android:textSize="11sp"
+                                    android:textSize="10sp"
                                     android:textStyle="bold"/>
                                 <TextView
                                     android:layout_width="match_parent"
@@ -324,36 +335,36 @@
                                     android:layout_weight="1"
                                     android:text="New Custom Content Mod"
                                     android:textColor="#FFFFFF"
-                                    android:textSize="13sp"
+                                    android:textSize="12sp"
                                     android:gravity="center_vertical"/>
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
 
-                        <!-- Card 4 Mods -->
                         <androidx.cardview.widget.CardView
-                            android:layout_width="140dp"
+                            android:id="@+id/card_mods"
+                            android:layout_width="130dp"
                             android:layout_height="match_parent"
-                            app:cardCornerRadius="14dp"
+                            app:cardCornerRadius="12dp"
                             app:cardBackgroundColor="#221F2E">
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
-                                android:padding="12dp">
+                                android:padding="10dp">
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="MODS"
                                     android:textColor="#A1A1AA"
-                                    android:textSize="11sp"
+                                    android:textSize="10sp"
                                     android:textStyle="bold"/>
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="0dp"
                                     android:layout_weight="1"
-                                    android:text="Non-Downloadable Mods for Premium"
+                                    android:text="Browse Mods"
                                     android:textColor="#FFFFFF"
-                                    android:textSize="13sp"
+                                    android:textSize="12sp"
                                     android:gravity="center_vertical"/>
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
