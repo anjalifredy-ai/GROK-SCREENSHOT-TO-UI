@@ -100,4 +100,16 @@
     <color name="cs_ely_purple">#FF8B5CF6</color>
     <color name="cs_offline_gray">#FF666666</color>
     <color name="cs_microsoft_blue_skip">#FF4ADE80</color>
+
+    <!-- ===== Modern Home UI (screenshot match) ===== -->
+    <color name="home_bg">#0D0B14</color>
+    <color name="home_bg_end">#16131F</color>
+    <color name="home_card">#1A1724</color>
+    <color name="home_card_elevated">#221F2E</color>
+    <color name="home_sidebar">#120F1A</color>
+    <color name="home_accent_green">#22C55E</color>
+    <color name="home_accent_purple">#8B5CF6</color>
+    <color name="home_text_primary">#F8F8FC</color>
+    <color name="home_text_secondary">#A1A1AA</color>
+    <color name="home_nav_active">#338B5CF6</color>
 </resources>
