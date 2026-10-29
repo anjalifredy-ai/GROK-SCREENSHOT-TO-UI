@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Exact visual structure from user screenshot -->
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -6,61 +7,61 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_home_gradient">
 
-    <!-- LEFT SIDEBAR -->
+    <!-- ===== LEFT SIDEBAR ===== -->
     <LinearLayout
         android:id="@+id/sidebar"
-        android:layout_width="56dp"
-        android:layout_height="match_parent"
+        android:layout_width="58dp"
+        android:layout_height="0dp"
         android:orientation="vertical"
-        android:background="#120F1A"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp"
+        android:background="#0F0C16"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
         android:gravity="center_horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@mipmap/ic_launcher_round"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="22dp"
             android:contentDescription="@null"/>
 
         <ImageView
             android:id="@+id/nav_home"
-            android:layout_width="38dp"
-            android:layout_height="38dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@android:drawable/ic_menu_compass"
             android:background="@drawable/bg_nav_active"
-            android:padding="7dp"
+            android:padding="8dp"
             android:layout_marginBottom="10dp"
             android:contentDescription="Home"/>
 
         <ImageView
             android:id="@+id/nav_profile"
-            android:layout_width="38dp"
-            android:layout_height="38dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@android:drawable/ic_menu_myplaces"
-            android:padding="7dp"
+            android:padding="8dp"
             android:layout_marginBottom="10dp"
             android:contentDescription="Profile"/>
 
         <ImageView
             android:id="@+id/nav_mods"
-            android:layout_width="38dp"
-            android:layout_height="38dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@android:drawable/ic_menu_manage"
-            android:padding="7dp"
+            android:padding="8dp"
             android:layout_marginBottom="10dp"
             android:contentDescription="Mods"/>
 
         <ImageView
             android:id="@+id/nav_settings"
-            android:layout_width="38dp"
-            android:layout_height="38dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@android:drawable/ic_menu_preferences"
-            android:padding="7dp"
+            android:padding="8dp"
             android:layout_marginBottom="10dp"
             android:contentDescription="Settings"/>
 
@@ -71,77 +72,85 @@
 
         <ImageView
             android:id="@+id/nav_more"
-            android:layout_width="38dp"
-            android:layout_height="38dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@android:drawable/ic_menu_more"
-            android:padding="7dp"
+            android:padding="8dp"
             android:contentDescription="More"/>
     </LinearLayout>
 
-    <!-- MAIN CONTENT -->
-    <androidx.core.widget.NestedScrollView
+    <!-- ===== MAIN AREA ===== -->
+    <LinearLayout
+        android:id="@+id/main_area"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:clipToPadding="false"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="10dp"
         app:layout_constraintStart_toEndOf="@id/sidebar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
+        <!-- Top bar -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="12dp">
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="10dp">
 
-            <!-- TOP BAR -->
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tv_app_title"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="12dp">
+                android:layout_weight="1"
+                android:text="RemomLauncher"
+                android:textColor="#F8F8FC"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
 
-                <TextView
-                    android:id="@+id/tv_app_title"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="RemomLauncher"
-                    android:textColor="#F8F8FC"
-                    android:textSize="17sp"
-                    android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tv_premium_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Premium Profile"
+                android:textColor="#B0B0B8"
+                android:textSize="11sp"
+                android:background="@drawable/bg_chip"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="3dp"/>
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tv_premium_badge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Premium Profile"
-                    android:textColor="#A1A1AA"
-                    android:textSize="11sp"
-                    android:background="@drawable/bg_chip"
-                    android:paddingHorizontal="10dp"
-                    android:paddingVertical="4dp"/>
-            </LinearLayout>
+        <!-- HERO + PROFILE ROW (matches screenshot) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.15"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
 
-            <!-- HERO CARD -->
+            <!-- HERO CARD (left large) -->
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                app:cardCornerRadius="18dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:cardCornerRadius="16dp"
                 app:cardBackgroundColor="#1A1724"
                 app:cardElevation="6dp"
-                android:layout_marginBottom="14dp">
+                android:layout_marginEnd="10dp">
 
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
+                    <!-- Dark purple fill (placeholder for creeper bg) -->
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#2A1F3D"/>
+                        android:background="#241B33"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -156,7 +165,7 @@
                             android:layout_height="wrap_content"
                             android:text="Minecraft 1.20.1"
                             android:textColor="#FFFFFF"
-                            android:textSize="24sp"
+                            android:textSize="22sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -166,214 +175,209 @@
                             android:text="Latest Release • Ready to launch"
                             android:textColor="#C4C4CC"
                             android:textSize="12sp"
-                            android:layout_marginTop="3dp"
-                            android:layout_marginBottom="14dp"/>
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="12dp"/>
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_launch"
                             android:layout_width="wrap_content"
-                            android:layout_height="46dp"
-                            android:text="LAUNCH"
+                            android:layout_height="44dp"
+                            android:text="LAUNCH 1.20.1"
                             android:textColor="#FFFFFF"
                             android:textStyle="bold"
+                            android:textSize="13sp"
                             android:backgroundTint="#22C55E"
-                            app:cornerRadius="12dp"
-                            android:paddingHorizontal="26dp"/>
+                            app:cornerRadius="10dp"
+                            android:paddingHorizontal="22dp"/>
                     </LinearLayout>
                 </FrameLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- PROFILE + NEWS ROW -->
+            <!-- PROFILE CARD (right side, like screenshot) -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="110dp"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="14dp"
+                app:cardBackgroundColor="#1A1724"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:id="@+id/iv_profile_skin"
+                        android:layout_width="52dp"
+                        android:layout_height="52dp"
+                        android:src="@mipmap/ic_launcher_round"
+                        android:background="@drawable/bg_skin_circle"
+                        android:contentDescription="@null"/>
+
+                    <TextView
+                        android:id="@+id/tv_profile_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="docy"
+                        android:textColor="#FFFFFF"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="6dp"
+                        android:maxLines="1"
+                        android:ellipsize="end"/>
+
+                    <TextView
+                        android:id="@+id/tv_profile_sub"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Your Friends"
+                        android:textColor="#A1A1AA"
+                        android:textSize="10sp"
+                        android:layout_marginTop="1dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <!-- BOTTOM NEWS / MODS CARDS (4 cards like screenshot) -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="118dp"
+            android:scrollbars="none"
+            android:clipToPadding="false">
+
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="12dp">
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-                <!-- PROFILE CARD -->
+                <!-- Premium -->
                 <androidx.cardview.widget.CardView
-                    android:layout_width="120dp"
-                    android:layout_height="150dp"
-                    app:cardCornerRadius="14dp"
-                    app:cardBackgroundColor="#1A1724"
-                    app:cardElevation="4dp"
-                    android:layout_marginEnd="10dp">
-
+                    android:id="@+id/card_premium"
+                    android:layout_width="118dp"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="12dp"
+                    app:cardBackgroundColor="#221F2E"
+                    android:layout_marginEnd="8dp">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:gravity="center"
                         android:padding="10dp">
-
-                        <ImageView
-                            android:id="@+id/iv_profile_skin"
-                            android:layout_width="56dp"
-                            android:layout_height="56dp"
-                            android:src="@mipmap/ic_launcher_round"
-                            android:background="@drawable/bg_skin_circle"
-                            android:contentDescription="@null"/>
-
                         <TextView
-                            android:id="@+id/tv_profile_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Player"
-                            android:textColor="#FFFFFF"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:layout_marginTop="6dp"
-                            android:maxLines="1"
-                            android:ellipsize="end"/>
-
-                        <TextView
-                            android:id="@+id/tv_profile_sub"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Your Profile"
-                            android:textColor="#A1A1AA"
+                            android:text="PREMIUM"
+                            android:textColor="#8B5CF6"
                             android:textSize="10sp"
-                            android:layout_marginTop="2dp"/>
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="Get Premium Access"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            android:gravity="center_vertical"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-                <!-- NEWS CARDS HORIZONTAL -->
-                <HorizontalScrollView
-                    android:layout_width="0dp"
-                    android:layout_height="150dp"
-                    android:layout_weight="1"
-                    android:scrollbars="none"
-                    android:clipToPadding="false">
-
+                <!-- Launcher -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_launcher"
+                    android:layout_width="118dp"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="12dp"
+                    app:cardBackgroundColor="#221F2E"
+                    android:layout_marginEnd="8dp">
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/card_premium"
-                            android:layout_width="130dp"
-                            android:layout_height="match_parent"
-                            app:cardCornerRadius="12dp"
-                            app:cardBackgroundColor="#221F2E"
-                            android:layout_marginEnd="8dp">
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical"
-                                android:padding="10dp">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="PREMIUM"
-                                    android:textColor="#8B5CF6"
-                                    android:textSize="10sp"
-                                    android:textStyle="bold"/>
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Get Premium Access"
-                                    android:textColor="#FFFFFF"
-                                    android:textSize="12sp"
-                                    android:gravity="center_vertical"/>
-                            </LinearLayout>
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/card_launcher"
-                            android:layout_width="130dp"
-                            android:layout_height="match_parent"
-                            app:cardCornerRadius="12dp"
-                            app:cardBackgroundColor="#221F2E"
-                            android:layout_marginEnd="8dp">
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical"
-                                android:padding="10dp">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="LAUNCHER"
-                                    android:textColor="#22C55E"
-                                    android:textSize="10sp"
-                                    android:textStyle="bold"/>
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Launcher Release Announcement"
-                                    android:textColor="#FFFFFF"
-                                    android:textSize="12sp"
-                                    android:gravity="center_vertical"/>
-                            </LinearLayout>
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/card_update"
-                            android:layout_width="130dp"
-                            android:layout_height="match_parent"
-                            app:cardCornerRadius="12dp"
-                            app:cardBackgroundColor="#221F2E"
-                            android:layout_marginEnd="8dp">
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical"
-                                android:padding="10dp">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="NEW UPDATE"
-                                    android:textColor="#F97316"
-                                    android:textSize="10sp"
-                                    android:textStyle="bold"/>
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    android:text="New Custom Content Mod"
-                                    android:textColor="#FFFFFF"
-                                    android:textSize="12sp"
-                                    android:gravity="center_vertical"/>
-                            </LinearLayout>
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/card_mods"
-                            android:layout_width="130dp"
-                            android:layout_height="match_parent"
-                            app:cardCornerRadius="12dp"
-                            app:cardBackgroundColor="#221F2E">
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical"
-                                android:padding="10dp">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="MODS"
-                                    android:textColor="#A1A1AA"
-                                    android:textSize="10sp"
-                                    android:textStyle="bold"/>
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Browse Mods"
-                                    android:textColor="#FFFFFF"
-                                    android:textSize="12sp"
-                                    android:gravity="center_vertical"/>
-                            </LinearLayout>
-                        </androidx.cardview.widget.CardView>
-
+                        android:orientation="vertical"
+                        android:padding="10dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="LAUNCHER"
+                            android:textColor="#22C55E"
+                            android:textSize="10sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="Launcher Release Announcement"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            android:gravity="center_vertical"/>
                     </LinearLayout>
-                </HorizontalScrollView>
-            </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+                <!-- New Update -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_update"
+                    android:layout_width="118dp"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="12dp"
+                    app:cardBackgroundColor="#221F2E"
+                    android:layout_marginEnd="8dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="NEW UPDATE"
+                            android:textColor="#F97316"
+                            android:textSize="10sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="New Custom Content Mod"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            android:gravity="center_vertical"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Mods -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_mods"
+                    android:layout_width="118dp"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="12dp"
+                    app:cardBackgroundColor="#221F2E">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="MODS"
+                            android:textColor="#A1A1AA"
+                            android:textSize="10sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="Browse Mods"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            android:gravity="center_vertical"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
