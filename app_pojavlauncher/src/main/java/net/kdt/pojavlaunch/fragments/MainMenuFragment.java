@@ -133,7 +133,8 @@ public class MainMenuFragment extends Fragment {
     }
 
     public MainMenuFragment() {
-        super(R.layout.fragment_launcher);
+        // Use modern home layout matching the screenshot
+        super(R.layout.fragment_home_modern);
     }
 
     @Override
@@ -162,79 +163,48 @@ public class MainMenuFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        Button mNewsButton          = view.findViewById(R.id.news_button);
-        Button mDiscordButton       = view.findViewById(R.id.discord_button);
-        Button mCustomControlButton = view.findViewById(R.id.custom_control_button);
-        Button mInstallJarButton   = view.findViewById(R.id.install_jar_button);
-        Button mShareLogsButton    = view.findViewById(R.id.share_logs_button);
-        Button mOpenDirectoryButton = view.findViewById(R.id.open_directory_button);
-        Button mCursorCustomButton  = view.findViewById(R.id.cursor_customization_button);
-        Button mHomeButton          = view.findViewById(R.id.home_button);
-        Button mManageSkinButton    = view.findViewById(R.id.btn_manage_skin);
+        // Modern layout wiring
+        View launchBtn = view.findViewById(R.id.btn_launch);
+        if (launchBtn != null) {
+            launchBtn.setOnClickListener(v -> ExtraCore.setValue(ExtraConstants.LAUNCH_GAME, true));
+        }
 
-        ImageButton mEditProfileBtn = view.findViewById(R.id.edit_profile_button);
-        Button mPlayBtn = view.findViewById(R.id.play_button);
-        mVersionSpinner = view.findViewById(R.id.mc_version_spinner);
-        mRightPane = view.findViewById(R.id.right_pane_container);
-        mBottomBarBg       = view.findViewById(R.id._background_display_view);
-        mPlayButton        = mPlayBtn;
-        mEditProfileButton = mEditProfileBtn;
-        mBottomBar         = view.findViewById(R.id.bottom_bar);
+        View navHome = view.findViewById(R.id.nav_home);
+        View navProfile = view.findViewById(R.id.nav_profile);
+        View navMods = view.findViewById(R.id.nav_mods);
+        View navSettings = view.findViewById(R.id.nav_settings);
 
-        if (isTwoPane()) {
-            Fragment existing = getChildFragmentManager().findFragmentById(R.id.right_pane_container);
-            if (existing == null) {
-                getChildFragmentManager().beginTransaction().setReorderingAllowed(true)
-                        .replace(R.id.right_pane_container, RightPaneHomeFragment.class, null, RightPaneHomeFragment.TAG).commit();
-            }
+        if (navHome != null) navHome.setOnClickListener(v -> {
+            // already home
+        });
 
-        // Home entrance choreography — deferred one frame (window token),
-        // no-op when animations are Off.
-        view.post(() -> {
-            if (isAdded() && !isRemoving()) {
-                net.kdt.pojavlaunch.UiMotion.revealScreen(view);
+        if (navProfile != null) navProfile.setOnClickListener(v -> {
+            Toast.makeText(requireContext(), "Profile", Toast.LENGTH_SHORT).show();
+        });
+
+        if (navMods != null) navMods.setOnClickListener(v -> {
+            try {
+                Tools.swapFragment(requireActivity(), CsModsBrowserFragment.class, "CsModsBrowser", null);
+            } catch (Exception e) {
+                Toast.makeText(requireContext(), "Mods", Toast.LENGTH_SHORT).show();
             }
         });
-        }
 
-        Button mBrowserResourcesButton = view.findViewById(R.id.browser_resources_button);
-        if (mBrowserResourcesButton != null) mBrowserResourcesButton.setOnClickListener(v -> {
-            // Item-3: premium glass browser (Modrinth → current profile's folders)
-            if (getActivity() instanceof androidx.fragment.app.FragmentActivity) {
-                ResourceBrowserDialog.show((androidx.fragment.app.FragmentActivity) getActivity());
+        if (navSettings != null) navSettings.setOnClickListener(v -> {
+            try {
+                Tools.swapFragment(requireActivity(), net.kdt.pojavlaunch.prefs.screens.LauncherPreferenceFragment.class, "SETTINGS_FRAGMENT", null);
+            } catch (Exception e) {
+                Toast.makeText(requireContext(), "Settings", Toast.LENGTH_SHORT).show();
             }
         });
-        if (mHomeButton != null) mHomeButton.setOnClickListener(v -> refreshHomeState());
-        if (mNewsButton != null) mNewsButton.setOnClickListener(v -> Tools.openURL(requireActivity(), Tools.URL_HOME));
-        if (mDiscordButton != null) mDiscordButton.setOnClickListener(v -> Tools.openURL(requireActivity(), getString(R.string.discord_invite)));
-        if (mCustomControlButton != null) mCustomControlButton.setOnClickListener(v -> startActivity(new Intent(requireContext(), CustomControlsActivity.class)));
-        if (mCursorCustomButton != null) mCursorCustomButton.setOnClickListener(v -> Tools.swapFragment(requireActivity(), CursorCustomizationFragment.class, CursorCustomizationFragment.TAG, null));
-        if (mManageSkinButton != null) mManageSkinButton.setOnClickListener(v ->
-                openPane(SkinLibraryOverviewFragment.class, SkinLibraryOverviewFragment.TAG, null));
 
-        if (mInstallJarButton != null) {
-            if (hasOnlineProfile()) {
-                mInstallJarButton.setOnClickListener(v -> Tools.installMod(requireActivity(), false));
-                mInstallJarButton.setOnLongClickListener(v -> { Tools.installMod(requireActivity(), true); return true; });
-            } else mInstallJarButton.setOnClickListener(v -> hasNoOnlineProfileDialog(requireActivity()));
-        }
-
-        if (mShareLogsButton != null) mShareLogsButton.setOnClickListener(v -> shareLog(requireContext()));
-        if (mOpenDirectoryButton != null) {
-            mOpenDirectoryButton.setOnClickListener(v -> {
-                if (Tools.isDemoProfile(v.getContext())) hasNoOnlineProfileDialog(getActivity(), getString(R.string.demo_unsupported), getString(R.string.change_account));
-                else if (!hasOnlineProfile()) hasNoOnlineProfileDialog(requireActivity());
-                else openPath(v.getContext(), getCurrentProfileDirectory(), false);
-            });
-        }
-
-        if (mEditProfileBtn != null) mEditProfileBtn.setOnClickListener(v -> { if (mVersionSpinner != null) mVersionSpinner.openProfileEditor(requireActivity()); });
-        if (isTwoPane() && mVersionSpinner != null) mVersionSpinner.setOnClickListener(v -> openPane(InstancePickerFragment.class, InstancePickerFragment.TAG, null));
-        if (isTwoPane()) setBottomBarVisible(getChildFragmentManager().getBackStackEntryCount() == 0);
-
-        applyPremiumTouchAnimation(mHomeButton, mCursorCustomButton, mCustomControlButton, mBrowserResourcesButton, mInstallJarButton, mShareLogsButton, mOpenDirectoryButton, mPlayBtn, mEditProfileBtn, mVersionSpinner, mManageSkinButton);
-
-        if (mPlayBtn != null) mPlayBtn.setOnClickListener(v -> ExtraCore.setValue(ExtraConstants.LAUNCH_GAME, true));
+        // Keep old references null-safe so two-pane / legacy code doesn't crash
+        mVersionSpinner = null;
+        mRightPane = null;
+        mBottomBarBg = null;
+        mPlayButton = null;
+        mEditProfileButton = null;
+        mBottomBar = null;
     }
 
     @Override
@@ -247,8 +217,6 @@ public class MainMenuFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (mVersionSpinner != null) mVersionSpinner.post(() -> { if (mVersionSpinner != null) mVersionSpinner.reloadProfiles(); });
-        if (isTwoPane() && mBottomBar != null) mBottomBar.post(() -> setBottomBarVisible(getChildFragmentManager().getBackStackEntryCount() == 0));
     }
 
     private File getCurrentProfileDirectory() {
@@ -265,8 +233,6 @@ public class MainMenuFragment extends Fragment {
             if (v == null) continue;
             v.setOnTouchListener((view, event) -> {
                 switch (event.getAction()) {
-                    // Item-7: snappier press, lighter alpha dip (no fade spam),
-                    // fast-out spring-feel release (view anims are HW-accelerated).
                     case android.view.MotionEvent.ACTION_DOWN: view.animate().scaleX(0.94f).scaleY(0.94f).alpha(0.9f).setDuration(70).setInterpolator(new android.view.animation.AccelerateInterpolator()).start(); break;
                     case android.view.MotionEvent.ACTION_UP:
                     case android.view.MotionEvent.ACTION_CANCEL: view.animate().scaleX(1f).scaleY(1f).alpha(1f).setDuration(160).setInterpolator(new android.view.animation.PathInterpolator(0.22f, 1f, 0.36f, 1f)).start(); break;
