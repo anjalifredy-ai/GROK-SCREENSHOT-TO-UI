@@ -1,9 +1,7 @@
 package net.kdt.pojavlaunch.fragments;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -11,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import net.kdt.pojavlaunch.R;
+import net.kdt.pojavlaunch.Tools;
 import net.kdt.pojavlaunch.extra.ExtraConstants;
 import net.kdt.pojavlaunch.extra.ExtraCore;
 
@@ -37,7 +36,7 @@ public class ModernHomeFragment extends Fragment {
             });
         }
 
-        // Sidebar navigation placeholders
+        // Sidebar navigation
         View navHome = view.findViewById(R.id.nav_home);
         View navProfile = view.findViewById(R.id.nav_profile);
         View navMods = view.findViewById(R.id.nav_mods);
@@ -52,7 +51,6 @@ public class ModernHomeFragment extends Fragment {
         });
 
         if (navMods != null) navMods.setOnClickListener(v -> {
-            // open mods browser if available
             try {
                 Tools.swapFragment(requireActivity(), CsModsBrowserFragment.class, "CsModsBrowser", null);
             } catch (Exception e) {
